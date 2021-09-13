@@ -1,3 +1,6 @@
+import json
+import csv
+
 student_fields = ['first_name', 'last_name', 'email', 'age', 'address', 'gender']
 STUDENTS = []
 
@@ -34,20 +37,42 @@ def print_student(student):
 	for field in student:
 		print(field, '\t', student[field])
 
+def print_strudents_list():
+    '''Call print_student() for every student in STUDENTS''' 
+    pass
+
 def load_students():
 	for test_student in TEST_STUDENTS:
 		student = STUDENTS.append(dict(zip(student_fields,test_student)))
 
+def dump_students():
+	with open('student_data.json', 'w') as file:
+		json.dump(STUDENTS,file)
+
+def load_from_json(file_path='student_data.json'):
+	with open(file_path, 'r') as readfile:
+		STUDENTS = json.load(read_file)
+
+def dump_csv():
+	with open('student_data.csv', 'w') as file:
+		writer = csv.DictWriter(file, fieldnames=student_fields)
+		writer.writeheader()
+		for student in STUDENTS:
+			writer.writerow(student)
+
+ACTIONS = {
+	'add' : add_student,
+	'avg_age' : calculate_avg_age,
+	'load' : load_students,
+	'print' : print_students_list,
+	'dump' : dump_students,
+	'dump_csv' : dump_csv, 
+	'load_json' : load_from_json,
+}
+
 while True:
 	action = input('Desired action:\t')
-	if action == 'add':
-		add_student()
-	elif action == 'avg_age':
-		calculate_avg_age()
-	elif action == 'load':
-		load_students()
-	elif action == 'print':
-		for student in STUDENTS:
-			print_student(student)
+	if action in ACTIONS:
+		ACTIONS.get(actions)()
 	else:
 		break
