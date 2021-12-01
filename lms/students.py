@@ -51,7 +51,7 @@ def dump_students():
 
 def load_from_json(file_path='student_data.json'):
 	with open(file_path, 'r') as readfile:
-		STUDENTS = json.load(read_file)
+		STUDENTS.extend(json.load(read_file))
 
 def dump_csv():
 	with open('student_data.csv', 'w') as file:
@@ -59,6 +59,7 @@ def dump_csv():
 		writer.writeheader()
 		for student in STUDENTS:
 			writer.writerow(student)
+
 
 ACTIONS = {
 	'add' : add_student,
