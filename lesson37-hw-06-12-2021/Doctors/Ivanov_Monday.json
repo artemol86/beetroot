@@ -1,0 +1,14 @@
+[
+    {
+        "doctor_name": "Ivanov",
+        "day_of_week": "Monday",
+        "date": "8",
+        "client": "Client1"
+    },
+    {
+        "doctor_name": "Ivanov",
+        "day_of_week": "Monday",
+        "date": "9",
+        "client": "Client2"
+    }
+]
